@@ -9,7 +9,7 @@ import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class LottoBenefitCalculatorTest {
+class LottoBenefitTest {
 
     @DisplayName("이익을 정확하게 반환하는지 테스트")
     @ParameterizedTest
@@ -18,8 +18,8 @@ class LottoBenefitCalculatorTest {
             delimiter = ':')
     void resultBenefitMessage(int value, Long matchedPrice, double expectedBenefit) {
         Map<Integer, Long> matchResult = Collections.singletonMap(value, 1L);
-        LottoBenefitCalculator lottoMatchResult =
-                new LottoBenefitCalculator(1000, matchResult);
+        LottoBenefit lottoMatchResult =
+                new LottoBenefit(1000, matchResult);
 
         double benefit = lottoMatchResult.resultBenefit();
 

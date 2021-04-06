@@ -22,8 +22,8 @@ public class Main {
         Map<Integer, Long> matchResults = lottos.getMatchResults(winnerLotto);
         ResultView.printMatchResults(matchResults);
 
-        LottoBenefitCalculator lottoBenefitCalculator =
-                new LottoBenefitCalculator(lottoPurchaseAmount, matchResults);
-        ResultView.printBenefitResult(lottoBenefitCalculator.resultBenefit());
+        LottoBenefit lottoBenefit =
+                new LottoBenefit(lottoPurchaseAmount, matchResults);
+        ResultView.printBenefitResult(lottoBenefit.resultBenefit());
     }
 }
