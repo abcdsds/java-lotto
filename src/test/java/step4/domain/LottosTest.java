@@ -21,7 +21,7 @@ class LottosTest {
         Lotto firstLotto = Lotto.of("1,2,3,4,5,6");
         Lotto secondLotto = Lotto.of("40,41,42,43,44,45");
 
-        List<Lotto> firstLottos = Arrays.asList(firstLotto);
+        Lottos firstLottos = Lottos.of(Arrays.asList("1,2,3,4,5,6"));
         List<Lotto> secondLottos = Arrays.asList(secondLotto);
 
         Lottos lottos = Lottos.of(firstLottos, secondLottos);

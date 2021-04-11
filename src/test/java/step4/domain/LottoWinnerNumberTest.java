@@ -23,12 +23,12 @@ class LottoWinnerNumberTest {
     @ParameterizedTest
     @CsvSource(
             value = {
-                    "1,2,3,4,5,6,9",
+                    "1,2,3,4,5,6:9",
                     "10,11,12,13,15,16:17",
                     "1,2,3,4,5,45:6",
                     "1,2,3,4,11,22:33",
                     "1,2,3,11,22,33:44"},
-            delimiter = ',')
+            delimiter = ':')
     void lottoBonusNumberTest(String expectedLottoNumbers, int bonusNumber) {
         Assertions.assertDoesNotThrow(() -> new LottoWinnerNumber(bonusNumber, expectedLottoNumbers));
     }
@@ -42,7 +42,7 @@ class LottoWinnerNumberTest {
                     "1,2,3,4,5,45:5",
                     "1,2,3,4,11,22:4",
                     "1,2,3,11,22,33:3"},
-            delimiter = ',')
+            delimiter = ':')
     void lottoBonusNumberDuplicatedTest(String expectedLottoNumbers, int bonusNumber) {
 
         Assertions.assertThrows(

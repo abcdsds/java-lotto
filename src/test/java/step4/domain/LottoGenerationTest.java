@@ -32,15 +32,4 @@ class LottoGenerationTest {
         assertTrue(generatedLottos.contains(lotto));
     }
 
-    @DisplayName("번호 생성 갯수 테스트")
-    @ParameterizedTest
-    @CsvSource(value = {"1000:1","2000:2","100000:100","33000:33", "55999:55", "88777:88"}, delimiter = ':')
-    void getGeneratedLottosSizeTest(int cash, int counnt) {
-        List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5, 6);
-        LottoGeneration lottoGeneration = new LottoGeneration(numbers, cash);
-        List<Lotto> generatedLottos = lottoGeneration.getGeneratedLottos();
-
-        assertEquals(generatedLottos.size(), counnt);
-    }
-
 }
