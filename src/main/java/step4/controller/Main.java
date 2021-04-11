@@ -11,6 +11,9 @@ import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+import java.util.stream.Stream;
+
+import static java.util.stream.Collectors.*;
 
 
 public class Main {
@@ -31,14 +34,14 @@ public class Main {
     }
 
     private static Lottos getLottos(LottoCount lottoCount) {
-        List<String> userLottoNumbers = IntStream.range(0, lottoCount.getCountOfUserLottoNumber())
-                .mapToObj(index -> InputView.getUserLottoNumber())
-                .collect(Collectors.toList());
-        Lottos userLottos = Lottos.of(userLottoNumbers);
         LottoGeneration lottoGeneration =
                 new LottoGeneration(NumberGeneration.getLottoAllNumberInRange(), lottoCount.getLottoCount());
 
-        return Lottos.of(userLottos.getLottos(), lottoGeneration.getGeneratedLottos());
+        return Lottos.of(
+                Stream.generate(InputView::getUserLottoNumber)
+                        .limit(lottoCount.getCountOfUserLottoNumber())
+                        .collect(collectingAndThen(toList(), Lottos::of)),
+                lottoGeneration.getGeneratedLottos());
     }
 
 
