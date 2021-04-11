@@ -2,6 +2,7 @@ package step4.domain;
 
 
 import step4.exception.IllegalLottoNumberException;
+import step4.exception.IllegalLottoRangeException;
 
 public class LottoNumber {
     public static final int LOTTO_NUMBER_RANGE_MIN = 1;
@@ -18,17 +19,17 @@ public class LottoNumber {
     }
 
     public static LottoNumber valueOf(int lottoNumber) {
-        lottoNumberValidation(lottoNumber);
+        validateLottoNumber(lottoNumber);
         if (LottoNumberCache.cache[lottoNumber] != null)
             return LottoNumberCache.cache[lottoNumber];
 
         return new LottoNumber(lottoNumber);
     }
 
-    private static void lottoNumberValidation(int lottoNumber) {
+    private static void validateLottoNumber(int lottoNumber) {
         if (lottoNumber < LOTTO_NUMBER_RANGE_MIN
                 || lottoNumber >= LOTTO_NUMBER_RANGE_MAX)
-            throw new IllegalLottoNumberException("1 ~ 45 이내의 숫자만 입력할수 있습니다");
+            throw new IllegalLottoRangeException("1 ~ 45 이내의 숫자만 입력할수 있습니다");
     }
 
     public int getLottoNumber() {

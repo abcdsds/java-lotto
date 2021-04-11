@@ -15,11 +15,11 @@ public class LottoWinnerNumber {
 
     public LottoWinnerNumber(int lottoBonusNumber, String lottoNumbers) {
         this.lottoWinnerNumbers = Lotto.of(lottoNumbers);
-        lottoBonusNumberDuplicateCheck(lottoBonusNumber);
+        validateDuplicate(lottoBonusNumber);
         this.lottoBonusNumber = LottoNumber.valueOf(lottoBonusNumber);
     }
 
-    private void lottoBonusNumberDuplicateCheck(int lottoBonusNumber) {
+    private void validateDuplicate(int lottoBonusNumber) {
         if (lottoWinnerNumbers.isContains(LottoNumber.valueOf(lottoBonusNumber))) {
             throw new IllegalLottoBonusNumberException("로또 당첨번호와 일치합니다.");
         }

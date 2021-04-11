@@ -6,6 +6,9 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import static java.util.stream.Collectors.collectingAndThen;
+import static java.util.stream.Collectors.toList;
+
 public class Lottos {
 
     private final List<Lotto> lottos;
@@ -14,20 +17,16 @@ public class Lottos {
         this.lottos = lottos;
     }
 
-    public static Lottos of(List<Lotto> userLottos, List<Lotto> autoLottos) {
-        List<Lotto> lottos = Stream.of(userLottos, autoLottos)
+    public static Lottos of(Lottos userLottos, List<Lotto> autoLottos) {
+        return Stream.of(userLottos.getLottos(), autoLottos)
                 .flatMap(Collection::stream)
-                .collect(Collectors.toList());
-
-        return new Lottos(lottos);
+                .collect(collectingAndThen(toList(), Lottos::new));
     }
 
     public static Lottos of(List<String> userLottos) {
-        List<Lotto> lottos = userLottos.stream()
+        return userLottos.stream()
                 .map(Lotto::of)
-                .collect(Collectors.toList());
-        
-        return new Lottos(lottos);
+                .collect(collectingAndThen(toList(), Lottos::new));
     }
 
     public List<Lotto> getLottos() {

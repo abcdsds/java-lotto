@@ -4,9 +4,10 @@ package step4.domain;
 import java.util.Collections;
 import java.util.LinkedHashSet;
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+
+import static java.util.stream.Collectors.*;
 
 public class LottoGeneration {
 
@@ -20,17 +21,17 @@ public class LottoGeneration {
 
     public List<Lotto> getGeneratedLottos() {
         return IntStream.range(0, count)
-                .mapToObj(index -> new Lotto(getGeneratedNumbers()))
-                .collect(Collectors.toList());
+                .mapToObj(index -> getGeneratedNumbers())
+                .collect(toList());
     }
 
 
-    private Set<LottoNumber> getGeneratedNumbers() {
+    private Lotto getGeneratedNumbers() {
         Collections.shuffle(numbers);
 
         return numbers.stream()
                 .limit(Lotto.LOTTO_SIZE)
                 .map(LottoNumber::valueOf)
-                .collect(Collectors.toCollection(LinkedHashSet::new));
+                .collect(collectingAndThen(toCollection(LinkedHashSet::new), Lotto::new));
     }
 }

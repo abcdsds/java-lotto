@@ -10,13 +10,13 @@ public class LottoCount {
     private final int countOfUserLotto;
 
     public LottoCount(long lottoPurchaseAmount, int countOfUserLotto) {
-        amountValidation(lottoPurchaseAmount, countOfUserLotto);
+        validateAmount(lottoPurchaseAmount, countOfUserLotto);
 
         this.lottoPurchaseAmount = lottoPurchaseAmount;
         this.countOfUserLotto = countOfUserLotto;
     }
 
-    private void amountValidation(long lottoPurchaseAmount, int countOfUserLotto) {
+    private void validateAmount(long lottoPurchaseAmount, int countOfUserLotto) {
         if ((lottoPurchaseAmount / LOTTO_PRICE) < countOfUserLotto){
             throw new IllegalLottoCountException("수동으로 구매할 번호의 갯수가 총 갯수를 넘을 수 없습니다.");
         }

@@ -28,7 +28,7 @@ public enum Rank {
                 .filter(rank -> rank.countOfMatch == countOfMatch)
                 .filter(rank -> rank != rank.SECOND)
                 .findFirst()
-                .orElseGet(() -> Rank.MISS);
+                .orElse(Rank.MISS);
     }
 
     public int getCountOfMatch() {
